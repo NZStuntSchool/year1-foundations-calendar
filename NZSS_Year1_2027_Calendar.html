@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NZSS Year 1 Foundation — 2027 Schedule</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black:   #0a0a0a;
+    --dark:    #111111;
+    --card:    #161616;
+    --gold:    #C9972A;
+    --gold-lt: #E8B84B;
+    --gold-dk: #8B6510;
+    --white:   #F5F0E8;
+    --grey:    #666;
+    --green:   #4a7c59;
+    --blue:    #3a6a8a;
+  }
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    padding-bottom: 60px;
+  }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, #0a0a0a 60%, #1a1200);
+    border-bottom: 2px solid var(--gold-dk);
+    padding: 44px 40px 36px;
+    position: relative; overflow: hidden;
+  }
+  header::before {
+    content: '2027';
+    position: absolute; right: -10px; top: -20px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 180px; font-weight: 900;
+    color: rgba(201,151,42,0.05);
+    line-height: 1; pointer-events: none;
+  }
+  .header-badge {
+    display: inline-block;
+    background: var(--gold); color: var(--black);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 11px;
+    letter-spacing: 3px; padding: 4px 14px;
+    margin-bottom: 14px; text-transform: uppercase;
+  }
+  header h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(32px, 6vw, 64px);
+    font-weight: 900; line-height: 1;
+    text-transform: uppercase; letter-spacing: -1px;
+  }
+  header h1 span { color: var(--gold); }
+  header p { margin-top: 10px; font-size: 14px; color: #888; font-style: italic; max-width: 520px; }
+
+  /* LEGEND */
+  .legend {
+    display: flex; gap: 20px; flex-wrap: wrap;
+    padding: 18px 40px;
+    background: #0e0e0e;
+    border-bottom: 1px solid #1c1c1c;
+  }
+  .legend-item { display: flex; align-items: center; gap: 7px; font-size: 12px; color: #888; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .dot-workshop { background: var(--gold); }
+  .dot-training { background: var(--green); }
+  .dot-openmat  { background: var(--blue); }
+  .dot-horse    { background: #8a5a3a; }
+
+  /* MONTHS GRID */
+  .calendar { padding: 32px 40px; display: flex; flex-direction: column; gap: 32px; }
+
+  /* MONTH BLOCK */
+  .month-block {}
+  .month-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 4px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 12px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .month-label::after {
+    content: ''; flex: 1; height: 1px;
+    background: linear-gradient(90deg, var(--gold-dk), transparent);
+  }
+  .month-events { display: flex; flex-direction: column; gap: 7px; }
+
+  /* EVENT ROW */
+  .event-row {
+    display: flex; align-items: center; gap: 0;
+  }
+  .event-date-col {
+    flex-shrink: 0; width: 110px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px; color: #555;
+    padding-right: 12px; text-align: right;
+    line-height: 1.3;
+  }
+  .event-date-col strong { display: block; color: #888; font-size: 14px; }
+  .event-line {
+    flex-shrink: 0; width: 1px; height: 44px;
+    background: #2a2a2a; margin: 0 14px;
+  }
+  .event-card {
+    flex: 1; padding: 10px 14px;
+    border-radius: 2px; border: 1px solid transparent;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .event-card.workshop {
+    background: rgba(201,151,42,0.07);
+    border-color: rgba(201,151,42,0.15);
+    border-left: 3px solid var(--gold-dk);
+  }
+  .event-card.training {
+    background: rgba(74,124,89,0.07);
+    border-color: rgba(74,124,89,0.15);
+    border-left: 3px solid var(--green);
+  }
+  .event-card.openmat {
+    background: rgba(58,106,138,0.07);
+    border-color: rgba(58,106,138,0.15);
+    border-left: 3px solid var(--blue);
+  }
+  .event-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .event-card.workshop .event-name { color: var(--gold-lt); }
+  .event-card.training .event-name { color: #6ab882; }
+  .event-card.openmat  .event-name { color: #7ab8d4; }
+  .event-meta { font-size: 12px; color: #555; margin-left: auto; white-space: nowrap; }
+
+  /* HORSE SECTION */
+  .horse-section {
+    margin: 0 40px;
+    background: rgba(138,90,58,0.08);
+    border: 1px solid rgba(138,90,58,0.2);
+    border-left: 3px solid #8a5a3a;
+    padding: 20px 24px;
+  }
+  .horse-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px; font-weight: 700;
+    text-transform: uppercase; color: #c8845a;
+    letter-spacing: 1px; margin-bottom: 8px;
+  }
+  .horse-body { font-size: 13px; color: #777; line-height: 1.7; }
+
+  /* WHAT'S INCLUDED */
+  .included-section {
+    margin: 32px 40px 0;
+    background: var(--card);
+    border: 1px solid #1e1e1e;
+    border-top: 2px solid var(--gold-dk);
+    padding: 28px 32px;
+  }
+  .included-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px; font-weight: 900;
+    text-transform: uppercase; color: var(--gold);
+    letter-spacing: 1px; margin-bottom: 18px;
+  }
+  .included-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px; margin-bottom: 20px;
+  }
+  .included-item {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13px; color: #aaa;
+  }
+  .included-check { color: var(--gold); font-size: 14px; }
+  .included-note {
+    font-size: 12px; color: #555; font-style: italic;
+    border-top: 1px solid #1e1e1e; padding-top: 14px; margin-top: 4px;
+    line-height: 1.7;
+  }
+
+  /* WHAT YOU GET */
+  .benefits-section {
+    margin: 24px 40px 0;
+    background: linear-gradient(135deg, #0f0f0f, #130e00);
+    border: 1px solid #1c1400;
+    border-left: 3px solid var(--gold);
+    padding: 24px 28px;
+  }
+  .benefits-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px; font-weight: 700;
+    text-transform: uppercase; color: var(--gold);
+    letter-spacing: 2px; margin-bottom: 14px;
+  }
+  .benefits-grid { display: flex; flex-direction: column; gap: 8px; }
+  .benefit-item {
+    display: flex; gap: 10px; align-items: flex-start;
+    font-size: 13px; color: #888; line-height: 1.5;
+  }
+  .benefit-icon { color: var(--gold); flex-shrink: 0; margin-top: 1px; }
+
+  /* FOOTER NOTE */
+  .footer-note {
+    margin: 24px 40px 0; padding: 16px 20px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid #1e1e1e;
+    font-size: 12px; color: #555; font-style: italic; line-height: 1.7;
+  }
+
+  footer {
+    border-top: 1px solid #1a1a1a; margin-top: 48px;
+    padding: 20px 40px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 10px;
+  }
+  footer p { font-size: 12px; color: #444; }
+  footer a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px; font-weight: 700;
+    color: var(--gold); text-decoration: none; letter-spacing: 1px;
+  }
+
+  @media (max-width: 600px) {
+    header, .calendar, .horse-section, .included-section, .benefits-section, .footer-note, footer, .legend { padding-left: 16px; padding-right: 16px; }
+    .event-date-col { width: 72px; font-size: 11px; }
+    .included-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-badge">Year 1 — Foundations</div>
+  <h1>2027 <span>Draft</span> Schedule</h1>
+  <p>NZ Stunt School Year Programme · Foundation Year · Subject to change</p>
+</header>
+
+<!-- LEGEND -->
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot dot-workshop"></div> Specialist Workshop</div>
+  <div class="legend-item"><div class="legend-dot dot-training"></div> Monthly Block Training</div>
+  <div class="legend-item"><div class="legend-dot dot-openmat"></div> Open Mat</div>
+  <div class="legend-item"><div class="legend-dot dot-horse"></div> Horse Lessons</div>
+</div>
+
+<div class="calendar">
+
+  <!-- FEBRUARY -->
+  <div class="month-block">
+    <div class="month-label">February</div>
+    <div class="month-events">
+      <div class="event-row">
+        <div class="event-date-col"><strong>Sat 6</strong>Feb</div>
+        <div class="event-line"></div>
+        <div class="event-card workshop">
+          <div class="event-name">Fire Burns</div>
+          <div class="event-meta">📍 Hunua</div>
+        </div>
+      </div>
+      <div class="event-row">
+        <div class="event-date-col"><strong>Sat 6</strong>Feb</div>
+        <div class="event-line"></div>
+        <div class="event-card workshop">
+          <div class="event-name">Air Ram</div>
+          <div class="event-meta">📍 Hunua</div>
+        </div>
+      </div>
+      <div class="event-row">
+        <div class="event-date-col"><strong>Sun 14</strong>Feb</div>
+        <div class="event-line"></div>
+        <div class="event-card openmat">
+          <div class="event-name">Open Mat</div>
+          <div class="event-meta">📍 Hobsonville · Afternoon</div>
+        </div>
+      </div>
+      <div class="event-row">
+        <div class="event-date-col"><strong>Sun 28</strong>Feb</div>
+        <div class="event-line"></div>
+        <div class="event-card training">
+          <div class="event-name">Monthly Training</div>
+          <div class="event-meta">📍 Hunua · Afternoon</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MARCH -->
+  <div class="month-block">
+    <div class="month-label">March</div>
+    <div class="month-events">
+      <div class="event-row">
+        <div class="event-date-col"><strong>Sat 13</strong>Mar</div>
+        <div class="event-line"></div>
+        <div class="event-card workshop">
+          <div class="event-name">Wires</div>
+          <div class="event-meta">📍 Otara</div>
+        </div>
+      </div>
+      <div class="event-row">
+        <div class="event-date-col"><strong>Sun 14</strong>Mar</div>
+        <div class="event-line"></div>
+        <div class="event-card openmat">
+          <div class="event-name">Open Mat</div>
+          <div class="event-meta">📍 Hobsonville · Afternoon</div>
+        </div>
+      </div>
+      <div class="event-row">
+        <div class="event-date-col"><strong>Sat 20</strong>Mar</div>
+        <div class="event-line"></div>
+        <div class="event-card workshop">
+          <div class="event-name">High Falls</div>
+          <div class="event-meta">📍 Manukau</div>
+        </div>
+      </div>
+      <div class="event-row">
+        <div class="event-date-col"><strong>Sat 28</strong>Mar</div>
+        <div class="event-line"></div>
+        <div class="event-card training">
+          <div class="event-name">Monthly Training</div>
+          <div class="event-meta">📍 Hunua · Afternoon</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- APRIL -->
+  <div class="month-block">
+    <div class="month-label">April</div>
+    <div class="month-events">
+      <div class="event-row">
+        <div class="event-date-col"><strong>Fri 9</strong>Apr</div>
+        <div class="event-line"></div>
+        <div class="event-card workshop">
+          <div class="event-name">Water Workshop L1</div>
+          <div class="event-meta">📍 Glenfield</div>
+        </div>
+      </div>
+      <div class="event-row">
+        <div class="event-date-col"><strong>Sun 18</strong>Apr</div>
+        <div class="event-line"></div>
+        <div class="event-card openmat">
+          <div class="event-name">Open Mat</div>
+          <div class="event-meta">📍 Hobsonville · Afternoon</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAY -->
+  <div class="month-block">
+    <div class="month-label">May</div>
+    <div class="month-events">
+      <div class="event-row">
+        <div class="event-date-col"><strong>Sun 2</strong>May</div>
+        <div class="event-line"></div>
+        <div class="event-card training">
+          <div class="event-name">Monthly Training</div>
+          <div class="event-meta">📍 Hunua · Afternoon</div>
+        </div>
+      </div>
+      <div class="event-row">
+        <div class="event-date-col"><strong>Sun 16</strong>May</div>
+        <div class="event-line"></div>
+        <div class="event-card openmat">
+          <div class="event-name">Open Mat</div>
+          <div class="event-meta">📍 Hobsonville · Afternoon</div>
+        </div>
+      </div>
+      <div class="event-row">
+        <div class="event-date-col"><strong>Sat 22</strong>May</div>
+        <div class="event-line"></div>
+        <div class="event-card workshop">
+          <div class="event-name">Wires</div>
+          <div class="event-meta">📍 Otara</div>
+        </div>
+      </div>
+      <div class="event-row">
+        <div class="event-date-col"><strong>Sun 30</strong>May</div>
+        <div class="event-line"></div>
+        <div class="event-card training">
+          <div class="event-name">Monthly Training</div>
+          <div class="event-meta">📍 Hunua · Afternoon</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JUNE -->
+  <div class="month-block">
+    <div class="month-label">June</div>
+    <div class="month-events">
+      <div class="event-row">
+        <div class="event-date-col"><strong>Sun 13</strong>Jun</div>
+        <div class="event-line"></div>
+        <div class="event-card openmat">
+          <div class="event-name">Open Mat</div>
+          <div class="event-meta">📍 Hobsonville · Afternoon</div>
+        </div>
+      </div>
+      <div class="event-row">
+        <div class="event-date-col"><strong>Sun 20</strong>Jun</div>
+        <div class="event-line"></div>
+        <div class="event-card workshop">
+          <div class="event-name">Car Hits</div>
+          <div class="event-meta">📍 Hunua</div>
+        </div>
+      </div>
+      <div class="event-row">
+        <div class="event-date-col"><strong>Sun 27</strong>Jun</div>
+        <div class="event-line"></div>
+        <div class="event-card training">
+          <div class="event-name">Monthly Training</div>
+          <div class="event-meta">📍 Hunua · Afternoon</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JULY -->
+  <div class="month-block">
+    <div class="month-label">July</div>
+    <div class="month-events">
+      <div class="event-row">
+        <div class="event-date-col"><strong>Sun 11</strong>Jul</div>
+        <div class="event-line"></div>
+        <div class="event-card openmat">
+          <div class="event-name">Open Mat</div>
+          <div class="event-meta">📍 Hobsonville · Afternoon</div>
+        </div>
+      </div>
+      <div class="event-row">
+        <div class="event-date-col"><strong>Sat 24</strong>Jul</div>
+        <div class="event-line"></div>
+        <div class="event-card workshop">
+          <div class="event-name">Wires</div>
+          <div class="event-meta">📍 Otara</div>
+        </div>
+      </div>
+      <div class="event-row">
+        <div class="event-date-col"><strong>Sun 1 Aug</strong></div>
+        <div class="event-line"></div>
+        <div class="event-card training">
+          <div class="event-name">Monthly Training</div>
+          <div class="event-meta">📍 Hunua · Afternoon</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AUGUST -->
+  <div class="month-block">
+    <div class="month-label">August</div>
+    <div class="month-events">
+      <div class="event-row">
+        <div class="event-date-col"><strong>Sun 15</strong>Aug</div>
+        <div class="event-line"></div>
+        <div class="event-card openmat">
+          <div class="event-name">Open Mat</div>
+          <div class="event-meta">📍 Hobsonville · Afternoon</div>
+        </div>
+      </div>
+      <div class="event-row">
+        <div class="event-date-col"><strong>Sat 21</strong>Aug</div>
+        <div class="event-line"></div>
+        <div class="event-card workshop">
+          <div class="event-name">Wires</div>
+          <div class="event-meta">📍 Otara</div>
+        </div>
+      </div>
+      <div class="event-row">
+        <div class="event-date-col"><strong>Sun 29</strong>Aug</div>
+        <div class="event-line"></div>
+        <div class="event-card training">
+          <div class="event-name">Monthly Training</div>
+          <div class="event-meta">📍 Hunua · Afternoon</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEPTEMBER -->
+  <div class="month-block">
+    <div class="month-label">September</div>
+    <div class="month-events">
+      <div class="event-row">
+        <div class="event-date-col"><strong>Sun 12</strong>Sep</div>
+        <div class="event-line"></div>
+        <div class="event-card openmat">
+          <div class="event-name">Open Mat</div>
+          <div class="event-meta">📍 Hobsonville · Afternoon</div>
+        </div>
+      </div>
+      <div class="event-row">
+        <div class="event-date-col"><strong>Sat 18</strong>Sep</div>
+        <div class="event-line"></div>
+        <div class="event-card workshop">
+          <div class="event-name">High Falls</div>
+          <div class="event-meta">📍 Manukau</div>
+        </div>
+      </div>
+      <div class="event-row">
+        <div class="event-date-col"><strong>Sun 26</strong>Sep</div>
+        <div class="event-line"></div>
+        <div class="event-card training">
+          <div class="event-name">Monthly Training</div>
+          <div class="event-meta">📍 Hunua · Afternoon</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OCTOBER -->
+  <div class="month-block">
+    <div class="month-label">October</div>
+    <div class="month-events">
+      <div class="event-row">
+        <div class="event-date-col"><strong>Sun 17</strong>Oct</div>
+        <div class="event-line"></div>
+        <div class="event-card openmat">
+          <div class="event-name">Open Mat</div>
+          <div class="event-meta">📍 Hobsonville · Afternoon</div>
+        </div>
+      </div>
+      <div class="event-row">
+        <div class="event-date-col"><strong>Sat 23</strong>Oct</div>
+        <div class="event-line"></div>
+        <div class="event-card workshop">
+          <div class="event-name">Air Ram</div>
+          <div class="event-meta">📍 Hunua</div>
+        </div>
+      </div>
+      <div class="event-row">
+        <div class="event-date-col"><strong>Sat 23</strong>Oct</div>
+        <div class="event-line"></div>
+        <div class="event-card workshop">
+          <div class="event-name">Fire Burns</div>
+          <div class="event-meta">📍 Hunua</div>
+        </div>
+      </div>
+      <div class="event-row">
+        <div class="event-date-col"><strong>Sun 31</strong>Oct</div>
+        <div class="event-line"></div>
+        <div class="event-card training">
+          <div class="event-name">Monthly Training</div>
+          <div class="event-meta">📍 Hunua · Afternoon</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOVEMBER -->
+  <div class="month-block">
+    <div class="month-label">November</div>
+    <div class="month-events">
+      <div class="event-row">
+        <div class="event-date-col"><strong>Fri 5</strong>Nov</div>
+        <div class="event-line"></div>
+        <div class="event-card workshop">
+          <div class="event-name">Water Workshop L1</div>
+          <div class="event-meta">📍 Glenfield</div>
+        </div>
+      </div>
+      <div class="event-row">
+        <div class="event-date-col"><strong>Sat 4</strong>Nov</div>
+        <div class="event-line"></div>
+        <div class="event-card workshop">
+          <div class="event-name">Wires</div>
+          <div class="event-meta">📍 Otara</div>
+        </div>
+      </div>
+      <div class="event-row">
+        <div class="event-date-col"><strong>Sun 14</strong>Nov</div>
+        <div class="event-line"></div>
+        <div class="event-card openmat">
+          <div class="event-name">Open Mat</div>
+          <div class="event-meta">📍 Hobsonville · Afternoon</div>
+        </div>
+      </div>
+      <div class="event-row">
+        <div class="event-date-col"><strong>Sun 28</strong>Nov</div>
+        <div class="event-line"></div>
+        <div class="event-card training">
+          <div class="event-name">Monthly Training</div>
+          <div class="event-meta">📍 Hunua · Afternoon</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DECEMBER -->
+  <div class="month-block">
+    <div class="month-label">December</div>
+    <div class="month-events">
+      <div class="event-row">
+        <div class="event-date-col"><strong>Sun 12</strong>Dec</div>
+        <div class="event-line"></div>
+        <div class="event-card openmat">
+          <div class="event-name">Open Mat</div>
+          <div class="event-meta">📍 Hobsonville · Afternoon</div>
+        </div>
+      </div>
+      <div class="event-row">
+        <div class="event-date-col"><strong>Sat 18</strong>Dec</div>
+        <div class="event-line"></div>
+        <div class="event-card workshop">
+          <div class="event-name">Car Hits</div>
+          <div class="event-meta">📍 Hunua</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- HORSE LESSONS -->
+<div class="horse-section">
+  <div class="horse-title">🐴 Horse Lessons — 12 Hours Included</div>
+  <div class="horse-body">12 hours of horse lessons are included throughout the year, booked on weekdays at Hunua. We'll coordinate session times with you directly to suit your availability.</div>
+</div>
+
+<!-- WHAT'S INCLUDED -->
+<div class="included-section">
+  <div class="included-title">What's Included in Year 1</div>
+  <div class="included-grid">
+    <div class="included-item"><span class="included-check">✔</span> Water Workshop — 1 session</div>
+    <div class="included-item"><span class="included-check">✔</span> Wires — 2 sessions + repeats</div>
+    <div class="included-item"><span class="included-check">✔</span> Car Hits — 1 session</div>
+    <div class="included-item"><span class="included-check">✔</span> Fire Burns — 1 session</div>
+    <div class="included-item"><span class="included-check">✔</span> Air Ram — 1 session</div>
+    <div class="included-item"><span class="included-check">✔</span> High Falls — 1 session</div>
+    
+    <div class="included-item"><span class="included-check">✔</span> Horse Work — 12 hours</div>
+    <div class="included-item"><span class="included-check">✔</span> Monthly Block Training — all year</div>
+    <div class="included-item"><span class="included-check">✔</span> Open Mat — all year</div>
+    <div class="included-item"><span class="included-check">✔</span> Free NZAT Joining Fee</div>
+  </div>
+  <div class="included-note">Sessions may occasionally be postponed or cancelled due to weather or instructor availability. Alternative dates will always be offered.</div>
+</div>
+
+<!-- WHAT YOU GET -->
+<div class="benefits-section">
+  <div class="benefits-title">Beyond the Schedule</div>
+  <div class="benefits-grid">
+    <div class="benefit-item"><span class="benefit-icon">📊</span>Ongoing assessment throughout the year — feedback and tips to track your growth</div>
+    <div class="benefit-item"><span class="benefit-icon">🎬</span>Block training across four scenario themes — Urban Combat, War & Battle, Pursuit & Escape, Epic Action</div>
+    <div class="benefit-item"><span class="benefit-icon">🏋️</span>Free time to develop body control and complement your training with martial arts or sports alongside the programme</div>
+    <div class="benefit-item"><span class="benefit-icon">📋</span>Grant application support available — ask us when you register</div>
+  </div>
+</div>
+
+<!-- FOOTER NOTE -->
+<div class="footer-note">
+  <strong style="color:#888;">Please note:</strong> This is a draft schedule for 2027 and is subject to change due to instructor or location availability. If you cannot attend a workshop from your programme, an alternative date will always be offered. · You must complete Fight for Camera (FFC) before joining the Year Programme — either in person or online. If you have already attended a similar beginner workshop, you may be assessed and join directly without completing FFC. Contact us to discuss.
+</div>
+
+<footer>
+  <p>NZ Stunt School Year 1 — Foundations · Draft 2027 Schedule</p>
+  <a href="https://nzstuntschool.com">NZSTUNTSCHOOL.COM</a>
+</footer>
+
+</body>
+</html>
